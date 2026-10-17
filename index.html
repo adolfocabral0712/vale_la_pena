@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="es-UY">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173f35">
+  <meta name="description" content="VALE LA PENA. Productos prácticos para tu día a día. Consultá disponibilidad y coordiná tu compra por WhatsApp.">
+  <title>VALE LA PENA | Catálogo</title>
+
+  <style>
+    :root {
+      color-scheme: light;
+      --fondo: #f7f4ec;
+      --blanco: #ffffff;
+      --verde: #173f35;
+      --verde-hover: #245a49;
+      --verde-suave: #edf4ef;
+      --oro: #b3914e;
+      --texto: #25372f;
+      --secundario: #626b64;
+      --borde: #dfE4db;
+      --sombra: 0 8px 28px rgba(25, 52, 41, .06);
+      --radio: 18px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--fondo);
+      color: var(--texto);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+
+    body.modal-abierto { overflow: hidden; }
+
+    button, input, select { font: inherit; }
+
+    button, a, input, select { -webkit-tap-highlight-color: transparent; }
+
+    button, select, input[type="checkbox"] { cursor: pointer; }
+
+    a { color: inherit; }
+
+    button { color: inherit; }
+
+    :focus-visible {
+      outline: 3px solid var(--oro);
+      outline-offset: 4px;
+    }
+
+    [hidden] { display: none !important; }
+
+    .contenedor {
+      width: min(1180px, calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .saltar {
+      position: fixed;
+      top: -100px;
+      left: 16px;
+      z-index: 100;
+      padding: 12px 20px;
+      background: white;
+      border: 2px solid var(--verde);
+      border-radius: 10px;
+    }
+
+    .saltar:focus { top: 12px; }
+
+    .cabecera {
+      background: var(--verde);
+      color: white;
+      border-bottom: 3px solid var(--oro);
+    }
+
+    .cabecera-interior {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding-block: 26px;
+    }
+
+    .marca {
+      margin: 0;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 850;
+      letter-spacing: .06em;
+      line-height: 1.2;
+    }
+
+    .presentacion {
+      margin: 8px 0 0;
+      color: #e0e8e2;
+      font-size: .95rem;
+    }
+
+    .cabecera-contacto {
+      flex-shrink: 0;
+      padding: 11px 17px;
+      border: 1px solid #94a79a;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 650;
+    }
+
+    .cabecera-contacto:hover { background: rgba(255,255,255,.08); }
+
+    .intro {
+      padding-top: 30px;
+      padding-bottom: 20px;
+    }
+
+    .etiqueta {
+      color: #77602e;
+      font-size: .74rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 5px 0 6px;
+      color: var(--verde);
+      font-size: clamp(1.5rem, 4vw, 2.1rem);
+      line-height: 1.2;
+      letter-spacing: -.035em;
+    }
+
+    .intro p {
+      margin: 0;
+      color: var(--secundario);
+    }
+
+    .aviso-ejemplos {
+      margin-top: 16px;
+      padding: 11px 14px;
+      border: 1px solid #ded1b2;
+      border-radius: 10px;
+      background: #fcf7e9;
+      color: #705622;
+      font-size: .85rem;
+    }
+
+    .filtros {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 220px auto;
+      align-items: end;
+      gap: 16px;
+      padding: 20px;
+      border: 1px solid var(--borde);
+      border-radius: var(--radio);
+      background: white;
+      box-shadow: var(--sombra);
+    }
+
+    .campo {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .campo label {
+      font-size: .83rem;
+      font-weight: 750;
+    }
+
+    input[type="search"], select {
+      width: 100%;
+      min-height: 46px;
+      padding: 10px 12px;
+      border: 1px solid #c9d1c6;
+      border-radius: 10px;
+      background: #fff;
+      color: var(--texto);
+    }
+
+    input[type="search"]::placeholder { color: #777e76; }
+
+    .solo-disponibles {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      min-height: 46px;
+      font-size: .9rem;
+      white-space: nowrap;
+    }
+
+    .solo-disponibles input {
+      width: 19px;
+      height: 19px;
+      margin: 0;
+      accent-color: var(--verde);
+    }
+
+    .barra-resultados {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-block: 20px 16px;
+    }
+
+    .barra-resultados p {
+      margin: 0;
+      color: var(--secundario);
+      font-size: .9rem;
+    }
+
+    .limpiar {
+      min-height: 44px;
+      padding: 8px 10px;
+      border: 0;
+      background: transparent;
+      color: var(--verde);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      font-size: .85rem;
+      font-weight: 650;
+    }
+
+    .catalogo {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .tarjeta {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      overflow: hidden;
+      background: white;
+      border: 1px solid var(--borde);
+      border-radius: var(--radio);
+      box-shadow: var(--sombra);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    @media (hover: hover) {
+      .tarjeta:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 14px 32px rgba(25,52,41,.1);
+      }
+    }
+
+    .tarjeta-detalle {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      width: 100%;
+      padding: 0;
+      text-align: left;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+    }
+
+    .imagen-producto {
+      position: relative;
+      display: grid;
+      place-items: center;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      background: #f5f5ef;
+    }
+
+    .imagen-producto img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .reemplazo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      height: 100%;
+      padding: 25px;
+      text-align: center;
+      background: linear-gradient(145deg, #f3f4ec, #e8eee5);
+      color: #53684f;
+      font-size: .85rem;
+    }
+
+    .reemplazo svg { width: 48px; height: 48px; }
+
+    .cantidad-fotos {
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+      padding: 4px 9px;
+      background: rgba(255,255,255,.95);
+      border: 1px solid var(--borde);
+      border-radius: 20px;
+      font-size: .72rem;
+      font-weight: 700;
+    }
+
+    .informacion {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+      padding: 18px 18px 12px;
+    }
+
+    .categoria-producto {
+      color: var(--secundario);
+      font-size: .72rem;
+      font-weight: 750;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+    }
+
+    .nombre-producto {
+      margin: 5px 0 8px;
+      font-size: 1.05rem;
+      font-weight: 750;
+      line-height: 1.35;
+    }
+
+    .descripcion {
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      margin: 0 0 9px;
+      color: var(--secundario);
+      font-size: .85rem;
+    }
+
+    .medidas {
+      margin: 0 0 12px;
+      color: var(--secundario);
+      font-size: .77rem;
+    }
+
+    .precio-estado {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      width: 100%;
+      margin-top: auto;
+    }
+
+    .precio {
+      color: var(--verde);
+      font-size: 1.5rem;
+      font-weight: 850;
+      letter-spacing: -.04em;
+    }
+
+    .estado {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 9px;
+      border-radius: 20px;
+      background: var(--verde-suave);
+      color: #285539;
+      font-size: .72rem;
+      font-weight: 750;
+    }
+
+    .estado::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .estado.agotado {
+      background: #f3ece9;
+      color: #7e5145;
+    }
+
+    .acciones-tarjeta { padding: 0 18px 18px; }
+
+    .boton-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 46px;
+      width: 100%;
+      padding: 11px 13px;
+      border: 1px solid var(--verde);
+      border-radius: 10px;
+      background: var(--verde);
+      color: white;
+      font-size: .86rem;
+      font-weight: 700;
+      line-height: 1.3;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .boton-whatsapp:hover { background: var(--verde-hover); }
+
+    .icono-wa {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    .sin-resultados {
+      padding: 50px 22px;
+      border: 1px dashed #bac8b6;
+      border-radius: var(--radio);
+      background: #ffffff80;
+      text-align: center;
+    }
+
+    .sin-resultados h2 { margin: 0 0 8px; font-size: 1.2rem; }
+    .sin-resultados p { color: var(--secundario); }
+
+    .pie {
+      margin-top: 45px;
+      padding-block: 25px 115px;
+      border-top: 1px solid var(--borde);
+      color: var(--secundario);
+      font-size: .82rem;
+      text-align: center;
+    }
+
+    .pie p { margin: 5px 0; }
+    .pie strong { color: var(--verde); letter-spacing: .04em; }
+
+    .flotante {
+      position: fixed;
+      z-index: 10;
+      right: max(18px, env(safe-area-inset-right));
+      bottom: max(18px, env(safe-area-inset-bottom));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-width: 54px;
+      min-height: 54px;
+      padding: 13px 18px;
+      border: 2px solid white;
+      border-radius: 30px;
+      background: var(--verde);
+      color: white;
+      box-shadow: 0 5px 24px #173f3533;
+      font-size: .85rem;
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .flotante .icono-wa { width: 25px; height: 25px; }
+
+    dialog {
+      width: min(940px, calc(100% - 28px));
+      max-height: 90dvh;
+      padding: 0;
+      overflow: auto;
+      border: 1px solid var(--borde);
+      border-radius: 22px;
+      background: white;
+      color: var(--texto);
+      box-shadow: 0 25px 100px #0004;
+    }
+
+    dialog::backdrop {
+      background: rgba(12, 30, 23, .68);
+    }
+
+    .modal-cabecera {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 12px 18px;
+      background: white;
+      border-bottom: 1px solid var(--borde);
+    }
+
+    .modal-cabecera span {
+      color: var(--secundario);
+      font-size: .8rem;
+      font-weight: 700;
+    }
+
+    .cerrar {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--borde);
+      border-radius: 50%;
+      background: var(--fondo);
+      font-size: 1.6rem;
+      line-height: 1;
+    }
+
+    .modal-contenido {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+    }
+
+    .galeria { min-width: 0; padding: 20px; }
+
+    .imagen-ampliada {
+      aspect-ratio: 1 / 1;
+      border: 1px solid var(--borde);
+      border-radius: 14px;
+    }
+
+    .navegacion-fotos {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .flecha {
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--borde);
+      border-radius: 10px;
+      background: var(--fondo);
+      font-size: 1.25rem;
+    }
+
+    .flecha:disabled { opacity: .4; cursor: default; }
+
+    .contador-fotos { color: var(--secundario); font-size: .8rem; }
+
+    .miniaturas {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 12px 2px 5px;
+    }
+
+    .miniatura {
+      flex: 0 0 60px;
+      width: 60px;
+      height: 60px;
+      padding: 3px;
+      overflow: hidden;
+      border: 2px solid transparent;
+      border-radius: 9px;
+      background: var(--fondo);
+    }
+
+    .miniatura[aria-pressed="true"] { border-color: var(--verde); }
+
+    .miniatura img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .miniatura .reemplazo { gap: 0; padding: 4px; }
+    .miniatura .reemplazo svg { width: 25px; height: 25px; }
+    .miniatura .reemplazo span { display: none; }
+
+    .detalle {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 26px 24px 28px;
+    }
+
+    .detalle h2 {
+      margin: 7px 0 13px;
+      color: var(--verde);
+      font-size: 1.6rem;
+      line-height: 1.2;
+      letter-spacing: -.03em;
+    }
+
+    .detalle-descripcion {
+      margin: 15px 0;
+      color: var(--secundario);
+      white-space: pre-line;
+      overflow-wrap: anywhere;
+    }
+
+    .detalle-medidas {
+      width: 100%;
+      margin: 0 0 20px;
+      padding: 13px;
+      border-radius: 10px;
+      background: var(--fondo);
+      font-size: .85rem;
+      white-space: pre-line;
+    }
+
+    .detalle .precio { margin-bottom: 17px; font-size: 2rem; }
+
+    .nota-whatsapp {
+      margin: 12px 0 0;
+      color: var(--secundario);
+      font-size: .77rem;
+    }
+
+    @media (min-width: 1150px) {
+      .catalogo { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 800px) {
+      .filtros { grid-template-columns: 1fr 1fr; }
+      .campo-buscador { grid-column: 1 / -1; }
+      .solo-disponibles { align-self: end; justify-content: flex-end; }
+      .catalogo { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; }
+      .modal-contenido { grid-template-columns: 1fr; }
+      .galeria { padding-bottom: 5px; }
+      .imagen-ampliada { max-height: 45dvh; aspect-ratio: auto; height: 360px; }
+      .detalle { padding-top: 18px; }
+    }
+
+    @media (max-width: 520px) {
+      .contenedor { width: calc(100% - 24px); }
+      .cabecera-interior { padding-block: 20px; }
+      .cabecera-contacto { display: none; }
+      .presentacion { max-width: 330px; font-size: .85rem; }
+      .intro { padding-top: 22px; }
+      .intro p { font-size: .9rem; }
+      .filtros { padding: 14px; gap: 12px; }
+      .solo-disponibles { font-size: .79rem; gap: 6px; }
+      .catalogo { gap: 12px; }
+      .tarjeta { border-radius: 13px; }
+      .informacion { padding: 12px 11px 10px; }
+      .nombre-producto { font-size: .94rem; }
+      .descripcion { font-size: .78rem; }
+      .medidas { font-size: .72rem; }
+      .precio { font-size: 1.3rem; }
+      .estado { padding: 4px 7px; font-size: .67rem; }
+      .acciones-tarjeta { padding: 0 10px 12px; }
+      .boton-whatsapp { font-size: .76rem; padding: 10px 7px; gap: 5px; }
+      .boton-whatsapp .icono-wa { width: 17px; height: 17px; }
+      .flotante { padding: 13px; }
+      .flotante span { display: none; }
+      .detalle .boton-whatsapp { font-size: .9rem; }
+    }
+
+    @media (max-width: 359px) {
+      .catalogo { grid-template-columns: 1fr; }
+      .filtros { grid-template-columns: 1fr; }
+      .solo-disponibles { justify-content: flex-start; }
+      .nombre-producto { font-size: 1.05rem; }
+      .boton-whatsapp { font-size: .88rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a href="#contenido" class="saltar">Saltar al catálogo</a>
+
+  <!-- Ícono reutilizable, incluido en el archivo: no requiere librerías. -->
+  <svg xmlns="http://www.w3.org/2000/svg"
+       width="0" height="0"
+       aria-hidden="true"
+       style="position:absolute;overflow:hidden">
+    <symbol id="icono-whatsapp" viewBox="0 0 24 24">
+      <path d="M20.52 3.48A11.91 11.91 0 0 0 12.05 0C5.46 0 .1 5.36.1 11.95c0 2.1.55 4.15 1.6 5.96L0 24l6.25-1.64a11.9 11.9 0 0 0 5.8 1.48h.01C18.65 23.84 24 18.48 24 11.9c0-3.18-1.24-6.17-3.48-8.42ZM12.06 21.8a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.71.97.99-3.61-.23-.37a9.9 9.9 0 0 1-1.52-5.25c0-5.48 4.46-9.94 9.95-9.94a9.87 9.87 0 0 1 7.02 2.91 9.86 9.86 0 0 1 2.9 7.02c0 5.48-4.46 9.86-10 9.86Zm5.46-7.43c-.3-.15-1.77-.87-2.05-.97-.27-.1-.47-.15-.67.15s-.77.97-.95 1.17c-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.18-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.53-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.49s1.07 2.88 1.22 3.08c.15.2 2.1 3.21 5.09 4.5.71.31 1.27.49 1.71.63.72.23 1.37.2 1.88.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.18-1.42-.08-.13-.28-.2-.58-.35Z"/>
+    </symbol>
+  </svg>
+
+  <header class="cabecera">
+    <div class="contenedor cabecera-interior">
+      <div>
+        <p class="marca" data-negocio>VALE LA PENA</p>
+        <p class="presentacion">Pequeñas soluciones que hacen más fácil tu día.</p>
+      </div>
+      <a class="cabecera-contacto consulta-general"
+         target="_blank" rel="noopener noreferrer">
+        Hablemos por WhatsApp ↗
+      </a>
+    </div>
+  </header>
+
+  <main id="contenido" class="contenedor">
+    <section class="intro" aria-labelledby="titulo-catalogo">
+      <span class="etiqueta">Práctico · Simple · A tu alcance</span>
+      <h1 id="titulo-catalogo">Encontrá eso que te sirve.</h1>
+      <p>Explorá nuestros productos y consultanos directamente por WhatsApp.</p>
+
+      <!-- BORRAR este aviso cuando reemplaces los seis ejemplos. -->
+      <div class="aviso-ejemplos">
+        <strong>Catálogo de demostración:</strong>
+        los seis productos, características y precios son ficticios.
+        Reemplazalos por tu información real antes de publicar.
+      </div>
+    </section>
+
+    <section class="filtros" aria-label="Buscar y filtrar productos">
+      <div class="campo campo-buscador">
+        <label for="busqueda">¿Qué estás buscando?</label>
+        <input id="busqueda"
+               type="search"
+               placeholder="Buscar producto o característica…"
+               autocomplete="off">
+      </div>
+
+      <div class="campo">
+        <label for="categoria">Categoría</label>
+        <select id="categoria">
+          <option value="">Todas las categorías</option>
+        </select>
+      </div>
+
+      <label class="solo-disponibles" for="solo-disponibles">
+        <input id="solo-disponibles" type="checkbox" checked>
+        Solo disponibles
+      </label>
+    </section>
+
+    <div class="barra-resultados">
+      <p id="resultados" role="status" aria-live="polite" aria-atomic="true"></p>
+      <button id="limpiar-filtros" class="limpiar" type="button">
+        Restablecer filtros
+      </button>
+    </div>
+
+    <section id="catalogo" class="catalogo" aria-label="Productos"></section>
+
+    <section id="sin-resultados" class="sin-resultados" hidden>
+      <h2>No encontramos productos con esos filtros</h2>
+      <p>Probá con otra palabra, cambiá la categoría o desactivá “Solo disponibles”.</p>
+      <button id="restablecer-vacio" class="limpiar" type="button">
+        Volver al catálogo
+      </button>
+    </section>
+
+    <noscript>
+      <p>Activá JavaScript para ver el catálogo y sus filtros.</p>
+      <p>
+        También podés
+        <a href="https://wa.me/59899934473" target="_blank" rel="noopener noreferrer">
+          consultarnos por WhatsApp
+        </a>.
+      </p>
+    </noscript>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor">
+      <p><strong data-negocio>VALE LA PENA</strong></p>
+      <p>Precios expresados en pesos uruguayos ($ UYU).</p>
+      <p>Consultá disponibilidad y coordiná tu compra por WhatsApp.</p>
+      <p>© <span id="anio"></span></p>
+    </div>
+  </footer>
+
+  <a class="flotante consulta-general"
+     aria-label="Hacer una consulta general por WhatsApp"
+     title="Consultanos por WhatsApp"
+     target="_blank"
+     rel="noopener noreferrer">
+    <svg class="icono-wa" aria-hidden="true"><use href="#icono-whatsapp"></use></svg>
+    <span>¿Te ayudamos?</span>
+  </a>
+
+  <!-- El diálogo nativo contiene el foco y permite cerrar con Escape. -->
+  <dialog id="modal-producto" aria-labelledby="modal-titulo">
+    <div class="modal-cabecera">
+      <span>Conocé el producto</span>
+      <button id="cerrar-modal"
+              class="cerrar"
+              type="button"
+              aria-label="Cerrar detalle del producto"
+              autofocus>×</button>
+    </div>
+
+    <div class="modal-contenido">
+      <section class="galeria" aria-label="Fotos del producto">
+        <div id="foto-principal" class="imagen-producto imagen-ampliada"></div>
+
+        <div class="navegacion-fotos">
+          <button id="foto-anterior"
+                  class="flecha"
+                  type="button"
+                  aria-label="Ver foto anterior">←</button>
+          <span id="contador-fotos"
+                class="contador-fotos"
+                aria-live="polite"></span>
+          <button id="foto-siguiente"
+                  class="flecha"
+                  type="button"
+                  aria-label="Ver foto siguiente">→</button>
+        </div>
+
+        <div id="miniaturas" class="miniaturas" aria-label="Elegir una foto"></div>
+      </section>
+
+      <section class="detalle" aria-label="Información del producto">
+        <span id="modal-categoria" class="categoria-producto"></span>
+        <h2 id="modal-titulo"></h2>
+        <span id="modal-estado" class="estado"></span>
+        <p id="modal-descripcion" class="detalle-descripcion"></p>
+        <p id="modal-medidas" class="detalle-medidas"></p>
+        <div id="modal-precio" class="precio"></div>
+
+        <a id="modal-whatsapp"
+           class="boton-whatsapp"
+           target="_blank"
+           rel="noopener noreferrer">
+          <svg class="icono-wa" aria-hidden="true"><use href="#icono-whatsapp"></use></svg>
+          Consultar por WhatsApp
+        </a>
+
+        <p class="nota-whatsapp">
+          Se abrirá WhatsApp con el mensaje preparado.
+          Podrás revisarlo antes de enviarlo.
+        </p>
+      </section>
+    </div>
+  </dialog>
+
+  <script>
+    "use strict";
+
+    /*
+      ============================================================
+      PRODUCTOS: EDITÁ TU CATÁLOGO EN ESTA ÚNICA LISTA
+      ============================================================
+      Los seis productos siguientes son EJEMPLOS FICTICIOS.
+
+      id: identificador único, sin repetir.
+      nombre: nombre visible del producto.
+      categoria: se agrega automáticamente al filtro.
+      precio: número sin símbolo $, puntos de miles ni comillas.
+              Para decimales usá punto: 350.50
+      descripcion: descripción completa; la tarjeta muestra un resumen.
+      medidas: medidas, material u otras características.
+      disponible: true = Disponible / false = Agotado.
+      fotos: lista de rutas relativas o enlaces https completos.
+
+      Una foto:  fotos: ["img/producto.jpg"]
+      Más fotos: fotos: ["img/frente.jpg", "img/dorso.jpg"]
+
+      Subí las fotos a la carpeta "img" del repositorio.
+      Las mayúsculas, espacios y extensiones deben coincidir.
+      Podés usar, por ejemplo: "img/lampazo escurridor.png".
+
+      Para agregar un producto copiá un objeto completo.
+      Separá los objetos con comas y conservá los corchetes.
+    */
+
+    const PRODUCTOS = [
+      {
+        id: "ejemplo-01",
+        nombre: "Lampazo con escurridor · Ejemplo",
+        categoria: "Hogar",
+        precio: 590,
+        descripcion: "EJEMPLO FICTICIO. Lampazo práctico para la limpieza diaria del hogar. Su sistema de escurrido facilita el uso y ayuda a mantener las manos alejadas del agua. Reemplazá esta descripción por las características reales.",
+        medidas: "Ejemplo: mango de 120 cm · Plástico y metal.",
+        disponible: true,
+        fotos: [
+          "img/lampazo escurridor.png",
+          "img/lampazo-detalle.jpg"
+        ]
+      },
+      {
+        id: "ejemplo-02",
+        nombre: "Almohada de viaje · Ejemplo",
+        categoria: "Viaje y descanso",
+        precio: 390,
+        descripcion: "EJEMPLO FICTICIO. Almohada para acompañarte en viajes y momentos de descanso. Diseño compacto y fácil de transportar. Confirmá material, medidas y colores antes de publicar.",
+        medidas: "Ejemplo: 28 × 28 cm · Tela suave.",
+        disponible: true,
+        fotos: ["img/almoahada para viajes.png"]
+      },
+      {
+        id: "ejemplo-03",
+        nombre: "Pico giratorio para canilla · Ejemplo",
+        categoria: "Cocina",
+        precio: 290,
+        descripcion: "EJEMPLO FICTICIO. Accesorio orientable para dirigir el agua de la canilla y facilitar tareas cotidianas. Consultar compatibilidad de rosca y adaptadores con el modelo real.",
+        medidas: "Ejemplo: acabado metálico · Cabezal orientable.",
+        disponible: true,
+        fotos: ["img/pico giratorio.png"]
+      },
+      {
+        id: "ejemplo-04",
+        nombre: "Organizador de zapatos · Ejemplo",
+        categoria: "Organización",
+        precio: 250,
+        descripcion: "EJEMPLO FICTICIO. Organizador para aprovechar mejor el espacio y mantener el calzado ordenado. Reemplazá el texto por el tipo de instalación y la capacidad del artículo real.",
+        medidas: "Ejemplo: 25 × 12 cm · Plástico.",
+        disponible: true,
+        fotos: ["img/colgar zapatos.png"]
+      },
+      {
+        id: "ejemplo-05",
+        nombre: "Destapador de diseño · Ejemplo",
+        categoria: "Cocina",
+        precio: 190,
+        descripcion: "EJEMPLO FICTICIO. Un accesorio para tener a mano en reuniones y comidas. Diseño compacto, práctico para guardar o regalar. Confirmá el material y las medidas reales.",
+        medidas: "Ejemplo: 9 × 5 cm · Metal.",
+        disponible: true,
+        fotos: ["img/destapador AS.png"]
+      },
+      {
+        id: "ejemplo-06",
+        nombre: "Antifaz de descanso · Ejemplo",
+        categoria: "Viaje y descanso",
+        precio: 220,
+        descripcion: "EJEMPLO FICTICIO. Antifaz para reducir la luz durante tus momentos de descanso. Este producto se muestra agotado para demostrar el filtro de disponibilidad.",
+        medidas: "Ejemplo: 20 × 9 cm · Tela con banda elástica.",
+        disponible: false,
+        fotos: ["img/antifaz.png"]
+      }
+    ];
+
+    /*
+      ============================================================
+      DATOS DEL NEGOCIO
+      Cambiá el nombre y el número de WhatsApp solamente aquí.
+      WhatsApp: código de país + número, sin +, espacios ni corchetes.
+      ============================================================
+    */
+
+    const NEGOCIO = {
+      nombre: "VALE LA PENA",
+      whatsapp: "59899934473",
+      mensajeGeneral: "Hola, quisiera consultar sobre los productos de VALE LA PENA."
+    };
+
+    // A partir de aquí no necesitás modificar nada para editar productos.
+
+    const $ = (selector) => document.querySelector(selector);
+    const catalogo = $("#catalogo");
+    const busqueda = $("#busqueda");
+    const categoria = $("#categoria");
+    const soloDisponibles = $("#solo-disponibles");
+    const modal = $("#modal-producto");
+
+    const formatoNumero = new Intl.NumberFormat("es-UY", {
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 2
+    });
+
+    let productoActual = null;
+    let fotoActual = 0;
+    let focoAnterior = null;
+    let inicioFueraDelModal = false;
+
+    function precioTexto(precio) {
+      return "$ " + formatoNumero.format(precio);
+    }
+
+    function normalizar(texto) {
+      return String(texto)
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLocaleLowerCase("es")
+        .trim();
+    }
+
+    function enlaceWhatsapp(mensaje) {
+      return "https://wa.me/" + NEGOCIO.whatsapp +
+        "?text=" + encodeURIComponent(mensaje);
+    }
+
+    function enlaceProducto(producto) {
+      return enlaceWhatsapp(
+        "Hola, me interesa el producto " + producto.nombre +
+        ", publicado a " + precioTexto(producto.precio) +
+        ". ¿Está disponible?"
+      );
+    }
+
+    function crearIconoWhatsapp() {
+      const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svg.setAttribute("class", "icono-wa");
+      svg.setAttribute("aria-hidden", "true");
+
+      const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+      use.setAttribute("href", "#icono-whatsapp");
+      svg.append(use);
+
+      return svg;
+    }
+
+    function crearReemplazo() {
+      const elemento = document.createElement("div");
+      elemento.className = "reemplazo";
+      elemento.setAttribute("role", "img");
+      elemento.setAttribute("aria-label", "Foto no disponible");
+
+      // SVG fijo: nunca se inserta contenido del catálogo como HTML.
+      elemento.innerHTML = `
+        <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <rect x="6" y="8" width="36" height="32" rx="6"
+                stroke="currentColor" stroke-width="2"/>
+          <circle cx="17" cy="18" r="4"
+                  stroke="currentColor" stroke-width="2"/>
+          <path d="M8 34 20 24l8 7 6-5 7 8"
+                stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Foto próximamente</span>
+      `;
+
+      return elemento;
+    }
+
+    function crearImagen(ruta, textoAlternativo, diferida = true) {
+      if (typeof ruta !== "string" || !ruta.trim()) {
+        return crearReemplazo();
+      }
+
+      // Se admiten archivos relativos y enlaces HTTP/HTTPS.
+      try {
+        const url = new URL(ruta, document.baseURI);
+        if (!["http:", "https:", "file:"].includes(url.protocol)) {
+          return crearReemplazo();
+        }
+      } catch {
+        return crearReemplazo();
+      }
+
+      const imagen = document.createElement("img");
+      imagen.alt = textoAlternativo;
+      imagen.loading = diferida ? "lazy" : "eager";
+      imagen.decoding = "async";
+
+      imagen.addEventListener("error", () => {
+        imagen.replaceWith(crearReemplazo());
+      }, { once: true });
+
+      imagen.src = ruta;
+      return imagen;
+    }
+
+    function fotosDe(producto) {
+      return Array.isArray(producto.fotos) && producto.fotos.length
+        ? producto.fotos
+        : [""];
+    }
+
+    function crearEstado(disponible) {
+      const estado = document.createElement("span");
+      estado.className = "estado" + (disponible ? "" : " agotado");
+      estado.textContent = disponible ? "Disponible" : "Agotado";
+      return estado;
+    }
+
+    function crearTarjeta(producto) {
+      const articulo = document.createElement("article");
+      articulo.className = "tarjeta";
+
+      const abrir = document.createElement("button");
+      abrir.type = "button";
+      abrir.className = "tarjeta-detalle";
+      abrir.setAttribute("aria-haspopup", "dialog");
+      abrir.setAttribute("aria-label", "Ver fotos y detalles de " + producto.nombre);
+      abrir.addEventListener("click", () => abrirProducto(producto));
+
+      const zonaFoto = document.createElement("div");
+      zonaFoto.className = "imagen-producto";
+
+      const fotos = fotosDe(producto);
+      zonaFoto.append(crearImagen(fotos[0], producto.nombre));
+
+      if (fotos.length > 1) {
+        const cantidad = document.createElement("span");
+        cantidad.className = "cantidad-fotos";
+        cantidad.textContent = fotos.length + " fotos";
+        zonaFoto.append(cantidad);
+      }
+
+      const informacion = document.createElement("div");
+      informacion.className = "informacion";
+
+      const etiquetaCategoria = document.createElement("span");
+      etiquetaCategoria.className = "categoria-producto";
+      etiquetaCategoria.textContent = producto.categoria;
+
+      const nombre = document.createElement("h2");
+      nombre.className = "nombre-producto";
+      nombre.textContent = producto.nombre;
+
+      const descripcion = document.createElement("p");
+      descripcion.className = "descripcion";
+      descripcion.textContent = producto.descripcion;
+
+      const medidas = document.createElement("p");
+      medidas.className = "medidas";
+      medidas.textContent = producto.medidas || "";
+      medidas.hidden = !producto.medidas;
+
+      const precioEstado = document.createElement("div");
+      precioEstado.className = "precio-estado";
+
+      const precio = document.createElement("span");
+      precio.className = "precio";
+      precio.textContent = precioTexto(producto.precio);
+
+      precioEstado.append(precio, crearEstado(producto.disponible));
+      informacion.append(etiquetaCategoria, nombre, descripcion, medidas, precioEstado);
+      abrir.append(zonaFoto, informacion);
+
+      const acciones = document.createElement("div");
+      acciones.className = "acciones-tarjeta";
+
+      const whatsapp = document.createElement("a");
+      whatsapp.className = "boton-whatsapp";
+      whatsapp.href = enlaceProducto(producto);
+      whatsapp.target = "_blank";
+      whatsapp.rel = "noopener noreferrer";
+      whatsapp.setAttribute("aria-label", "Consultar por WhatsApp: " + producto.nombre);
+      whatsapp.append(crearIconoWhatsapp(), document.createTextNode("Consultar por WhatsApp"));
+
+      acciones.append(whatsapp);
+      articulo.append(abrir, acciones);
+
+      // El espacio exterior del artículo también abre el detalle.
+      articulo.addEventListener("click", (evento) => {
+        if (!evento.target.closest("a, button")) {
+          abrirProducto(producto);
+        }
+      });
+
+      return articulo;
+    }
+
+    function cargarCategorias() {
+      const categorias = [...new Set(PRODUCTOS.map(p => p.categoria))]
+        .sort((a, b) => a.localeCompare(b, "es"));
+
+      categorias.forEach(nombre => {
+        const opcion = document.createElement("option");
+        opcion.value = nombre;
+        opcion.textContent = nombre;
+        categoria.append(opcion);
+      });
+    }
+
+    function renderizarCatalogo() {
+      const palabras = normalizar(busqueda.value).split(/\s+/).filter(Boolean);
+
+      const productosFiltrados = PRODUCTOS
+        .filter(producto => {
+          const texto = normalizar(
+            producto.nombre + " " + producto.descripcion
+          );
+
+          return palabras.every(palabra => texto.includes(palabra)) &&
+            (!categoria.value || producto.categoria === categoria.value) &&
+            (!soloDisponibles.checked || producto.disponible);
+        })
+        .sort((a, b) => Number(b.disponible) - Number(a.disponible));
+
+      const fragmento = document.createDocumentFragment();
+      productosFiltrados.forEach(producto => {
+        fragmento.append(crearTarjeta(producto));
+      });
+
+      catalogo.replaceChildren(fragmento);
+
+      const cantidad = productosFiltrados.length;
+      $("#resultados").textContent =
+        cantidad + (cantidad === 1 ? " producto encontrado" : " productos encontrados");
+
+      $("#sin-resultados").hidden = cantidad !== 0;
+      catalogo.hidden = cantidad === 0;
+    }
+
+    function restablecerFiltros() {
+      busqueda.value = "";
+      categoria.value = "";
+      soloDisponibles.checked = true;
+      renderizarCatalogo();
+    }
+
+    function abrirProducto(producto) {
+      productoActual = producto;
+      fotoActual = 0;
+      focoAnterior = document.activeElement;
+
+      $("#modal-titulo").textContent = producto.nombre;
+      $("#modal-categoria").textContent = producto.categoria;
+      $("#modal-descripcion").textContent = producto.descripcion;
+
+      const medidas = $("#modal-medidas");
+      medidas.textContent = producto.medidas ? "Características: " + producto.medidas : "";
+      medidas.hidden = !producto.medidas;
+
+      $("#modal-precio").textContent = precioTexto(producto.precio);
+      $("#modal-whatsapp").href = enlaceProducto(producto);
+
+      const estado = $("#modal-estado");
+      estado.textContent = producto.disponible ? "Disponible" : "Agotado";
+      estado.className = "estado" + (producto.disponible ? "" : " agotado");
+
+      crearMiniaturas();
+      mostrarFoto(0);
+
+      modal.showModal();
+      document.body.classList.add("modal-abierto");
+      $("#cerrar-modal").focus();
+    }
+
+    function crearMiniaturas() {
+      const contenedor = $("#miniaturas");
+      contenedor.replaceChildren();
+
+      const fotos = fotosDe(productoActual);
+      contenedor.hidden = fotos.length < 2;
+
+      fotos.forEach((ruta, indice) => {
+        const boton = document.createElement("button");
+        boton.type = "button";
+        boton.className = "miniatura";
+        boton.setAttribute("aria-label", "Ver foto " + (indice + 1));
+        boton.setAttribute("aria-pressed", "false");
+
+        boton.append(crearImagen(
+          ruta,
+          "Foto " + (indice + 1) + " de " + productoActual.nombre
+        ));
+
+        boton.addEventListener("click", () => mostrarFoto(indice));
+        contenedor.append(boton);
+      });
+    }
+
+    function mostrarFoto(indice) {
+      if (!productoActual) return;
+
+      const fotos = fotosDe(productoActual);
+      fotoActual = (indice + fotos.length) % fotos.length;
+
+      $("#foto-principal").replaceChildren(
+        crearImagen(
+          fotos[fotoActual],
+          productoActual.nombre + " — foto " + (fotoActual + 1),
+          false
+        )
+      );
+
+      $("#contador-fotos").textContent =
+        "Foto " + (fotoActual + 1) + " de " + fotos.length;
+
+      $("#foto-anterior").disabled = fotos.length < 2;
+      $("#foto-siguiente").disabled = fotos.length < 2;
+
+      $("#miniaturas").querySelectorAll("button").forEach((boton, i) => {
+        boton.setAttribute("aria-pressed", String(i === fotoActual));
+      });
+    }
+
+    function cerrarModal() {
+      if (modal.open) modal.close();
+    }
+
+    $("#cerrar-modal").addEventListener("click", cerrarModal);
+
+    // Cierra solo si tanto el inicio como el final del clic son exteriores.
+    function estaFuera(evento) {
+      const limites = modal.getBoundingClientRect();
+      return evento.clientX < limites.left ||
+        evento.clientX > limites.right ||
+        evento.clientY < limites.top ||
+        evento.clientY > limites.bottom;
+    }
+
+    modal.addEventListener("pointerdown", evento => {
+      inicioFueraDelModal = evento.target === modal && estaFuera(evento);
+    });
+
+    modal.addEventListener("click", evento => {
+      if (inicioFueraDelModal && evento.target === modal && estaFuera(evento)) {
+        cerrarModal();
+      }
+      inicioFueraDelModal = false;
+    });
+
+    modal.addEventListener("close", () => {
+      document.body.classList.remove("modal-abierto");
+      productoActual = null;
+
+      if (focoAnterior && focoAnterior.isConnected) {
+        focoAnterior.focus();
+      }
+    });
+
+    // Escape lo gestiona el diálogo nativo. Las flechas cambian las fotos.
+    modal.addEventListener("keydown", evento => {
+      if (!productoActual) return;
+      if (evento.altKey || evento.ctrlKey || evento.metaKey) return;
+
+      if (evento.key === "ArrowLeft") {
+        evento.preventDefault();
+        mostrarFoto(fotoActual - 1);
+      }
+
+      if (evento.key === "ArrowRight") {
+        evento.preventDefault();
+        mostrarFoto(fotoActual + 1);
+      }
+    });
+
+    $("#foto-anterior").addEventListener("click", () => mostrarFoto(fotoActual - 1));
+    $("#foto-siguiente").addEventListener("click", () => mostrarFoto(fotoActual + 1));
+
+    busqueda.addEventListener("input", renderizarCatalogo);
+    categoria.addEventListener("change", renderizarCatalogo);
+    soloDisponibles.addEventListener("change", renderizarCatalogo);
+
+    $("#limpiar-filtros").addEventListener("click", restablecerFiltros);
+    $("#restablecer-vacio").addEventListener("click", restablecerFiltros);
+
+    document.querySelectorAll("[data-negocio]").forEach(elemento => {
+      elemento.textContent = NEGOCIO.nombre;
+    });
+
+    document.querySelectorAll(".consulta-general").forEach(enlace => {
+      enlace.href = enlaceWhatsapp(NEGOCIO.mensajeGeneral);
+    });
+
+    document.title = NEGOCIO.nombre + " | Catálogo";
+    $("#anio").textContent = new Date().getFullYear();
+
+    cargarCategorias();
+    renderizarCatalogo();
+  </script>
+</body>
+</html>
