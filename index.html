@@ -4,23 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#173f35">
-  <meta name="description" content="VALE LA PENA. Productos prácticos para tu día a día. Consultá disponibilidad y coordiná tu compra por WhatsApp.">
-  <title>VALE LA PENA | Catálogo</title>
+  <meta name="description" content="VALE LA PENA. Productos para el hogar, accesorios y soluciones prácticas. Consultanos por WhatsApp.">
+  <title>VALE LA PENA | Productos</title>
 
   <style>
     :root {
       color-scheme: light;
       --fondo: #f7f4ec;
-      --blanco: #ffffff;
+      --blanco: #fff;
       --verde: #173f35;
-      --verde-hover: #245a49;
-      --verde-suave: #edf4ef;
+      --verde-hover: #265c49;
       --oro: #b3914e;
-      --texto: #25372f;
-      --secundario: #626b64;
-      --borde: #dfE4db;
-      --sombra: 0 8px 28px rgba(25, 52, 41, .06);
-      --radio: 18px;
+      --texto: #293b32;
+      --secundario: #657067;
+      --borde: #dfe5dc;
+      --radio: 17px;
+      --sombra: 0 8px 28px rgba(25,52,41,.06);
     }
 
     * { box-sizing: border-box; }
@@ -36,121 +35,106 @@
     body.modal-abierto { overflow: hidden; }
 
     button, input, select { font: inherit; }
-
-    button, a, input, select { -webkit-tap-highlight-color: transparent; }
-
-    button, select, input[type="checkbox"] { cursor: pointer; }
-
+    button, select { cursor: pointer; }
     a { color: inherit; }
-
     button { color: inherit; }
+    [hidden] { display: none !important; }
 
     :focus-visible {
       outline: 3px solid var(--oro);
       outline-offset: 4px;
     }
 
-    [hidden] { display: none !important; }
-
     .contenedor {
-      width: min(1180px, calc(100% - 40px));
+      width: min(1180px, calc(100% - 36px));
       margin-inline: auto;
     }
 
     .saltar {
       position: fixed;
       top: -100px;
-      left: 16px;
+      left: 15px;
       z-index: 100;
-      padding: 12px 20px;
-      background: white;
-      border: 2px solid var(--verde);
+      padding: 12px 18px;
       border-radius: 10px;
+      background: white;
+      color: var(--verde);
     }
 
     .saltar:focus { top: 12px; }
 
-    .cabecera {
+    header {
       background: var(--verde);
       color: white;
       border-bottom: 3px solid var(--oro);
     }
 
-    .cabecera-interior {
+    .cabecera {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 24px;
-      padding-block: 26px;
+      align-items: center;
+      gap: 20px;
+      padding-block: 23px;
     }
 
     .marca {
       margin: 0;
       font-size: clamp(1.5rem, 4vw, 2rem);
       font-weight: 850;
-      letter-spacing: .06em;
+      letter-spacing: .07em;
       line-height: 1.2;
     }
 
     .presentacion {
       margin: 8px 0 0;
-      color: #e0e8e2;
-      font-size: .95rem;
+      color: #e2eae3;
+      font-size: .9rem;
     }
 
-    .cabecera-contacto {
+    .contacto-cabecera {
       flex-shrink: 0;
-      padding: 11px 17px;
-      border: 1px solid #94a79a;
+      padding: 11px 16px;
+      border: 1px solid #93a89a;
       border-radius: 12px;
       text-decoration: none;
+      font-size: .9rem;
       font-weight: 650;
     }
 
-    .cabecera-contacto:hover { background: rgba(255,255,255,.08); }
-
-    .intro {
-      padding-top: 30px;
-      padding-bottom: 20px;
+    .contacto-cabecera:hover {
+      background: rgba(255,255,255,.08);
     }
 
+    .intro { padding-block: 27px 20px; }
+
     .etiqueta {
-      color: #77602e;
-      font-size: .74rem;
+      color: #78602d;
+      font-size: .72rem;
       font-weight: 800;
-      letter-spacing: .14em;
+      letter-spacing: .13em;
       text-transform: uppercase;
     }
 
     h1 {
-      margin: 5px 0 6px;
+      margin: 6px 0;
       color: var(--verde);
-      font-size: clamp(1.5rem, 4vw, 2.1rem);
-      line-height: 1.2;
+      font-size: clamp(1.5rem, 4vw, 2rem);
       letter-spacing: -.035em;
+      line-height: 1.2;
     }
 
     .intro p {
       margin: 0;
       color: var(--secundario);
-    }
-
-    .aviso-ejemplos {
-      margin-top: 16px;
-      padding: 11px 14px;
-      border: 1px solid #ded1b2;
-      border-radius: 10px;
-      background: #fcf7e9;
-      color: #705622;
-      font-size: .85rem;
+      font-size: .93rem;
     }
 
     .filtros {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 220px auto;
+      grid-template-columns: minmax(0, 1fr) 250px;
       align-items: end;
       gap: 16px;
-      padding: 20px;
+      padding: 18px;
       border: 1px solid var(--borde);
       border-radius: var(--radio);
       background: white;
@@ -165,68 +149,50 @@
     }
 
     .campo label {
-      font-size: .83rem;
+      font-size: .82rem;
       font-weight: 750;
     }
 
-    input[type="search"], select {
+    input, select {
       width: 100%;
       min-height: 46px;
       padding: 10px 12px;
-      border: 1px solid #c9d1c6;
+      border: 1px solid #c9d2c6;
       border-radius: 10px;
-      background: #fff;
+      background: white;
       color: var(--texto);
     }
 
-    input[type="search"]::placeholder { color: #777e76; }
-
-    .solo-disponibles {
+    .resultados {
       display: flex;
       align-items: center;
-      gap: 9px;
-      min-height: 46px;
-      font-size: .9rem;
-      white-space: nowrap;
-    }
-
-    .solo-disponibles input {
-      width: 19px;
-      height: 19px;
-      margin: 0;
-      accent-color: var(--verde);
-    }
-
-    .barra-resultados {
-      display: flex;
       justify-content: space-between;
-      align-items: center;
       gap: 12px;
-      margin-block: 20px 16px;
+      margin-block: 16px;
     }
 
-    .barra-resultados p {
+    .resultados p {
       margin: 0;
       color: var(--secundario);
-      font-size: .9rem;
+      font-size: .85rem;
     }
 
     .limpiar {
       min-height: 44px;
-      padding: 8px 10px;
+      padding: 8px;
       border: 0;
       background: transparent;
       color: var(--verde);
       text-decoration: underline;
       text-underline-offset: 3px;
-      font-size: .85rem;
+      font-size: .83rem;
       font-weight: 650;
     }
 
     .catalogo {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 22px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 19px;
     }
 
     .tarjeta {
@@ -234,9 +200,9 @@
       flex-direction: column;
       min-width: 0;
       overflow: hidden;
-      background: white;
       border: 1px solid var(--borde);
       border-radius: var(--radio);
+      background: white;
       box-shadow: var(--sombra);
       transition: transform .18s ease, box-shadow .18s ease;
     }
@@ -244,33 +210,33 @@
     @media (hover: hover) {
       .tarjeta:hover {
         transform: translateY(-3px);
-        box-shadow: 0 14px 32px rgba(25,52,41,.1);
+        box-shadow: 0 14px 30px rgba(25,52,41,.11);
       }
     }
 
-    .tarjeta-detalle {
+    .abrir-producto {
       display: flex;
       flex: 1;
       flex-direction: column;
       width: 100%;
       padding: 0;
-      text-align: left;
-      background: transparent;
       border: 0;
+      background: transparent;
+      text-align: left;
       cursor: pointer;
     }
 
-    .imagen-producto {
+    .foto {
       position: relative;
       display: grid;
       place-items: center;
       width: 100%;
       aspect-ratio: 1 / 1;
       overflow: hidden;
-      background: #f5f5ef;
+      background: #f4f5ef;
     }
 
-    .imagen-producto img {
+    .foto img {
       display: block;
       width: 100%;
       height: 100%;
@@ -285,24 +251,24 @@
       gap: 10px;
       width: 100%;
       height: 100%;
-      padding: 25px;
+      padding: 20px;
+      background: linear-gradient(145deg, #f2f3ea, #e5ece2);
+      color: #52674f;
       text-align: center;
-      background: linear-gradient(145deg, #f3f4ec, #e8eee5);
-      color: #53684f;
-      font-size: .85rem;
+      font-size: .8rem;
     }
 
-    .reemplazo svg { width: 48px; height: 48px; }
+    .reemplazo svg { width: 45px; height: 45px; }
 
     .cantidad-fotos {
       position: absolute;
-      right: 10px;
-      bottom: 10px;
-      padding: 4px 9px;
-      background: rgba(255,255,255,.95);
+      right: 9px;
+      bottom: 9px;
+      padding: 4px 8px;
       border: 1px solid var(--borde);
       border-radius: 20px;
-      font-size: .72rem;
+      background: #fffffff0;
+      font-size: .7rem;
       font-weight: 700;
     }
 
@@ -312,21 +278,20 @@
       flex-direction: column;
       align-items: flex-start;
       width: 100%;
-      padding: 18px 18px 12px;
+      padding: 16px 16px 12px;
     }
 
     .categoria-producto {
       color: var(--secundario);
-      font-size: .72rem;
+      font-size: .67rem;
       font-weight: 750;
-      letter-spacing: .07em;
+      letter-spacing: .06em;
       text-transform: uppercase;
     }
 
     .nombre-producto {
       margin: 5px 0 8px;
-      font-size: 1.05rem;
-      font-weight: 750;
+      font-size: 1rem;
       line-height: 1.35;
     }
 
@@ -334,16 +299,10 @@
       display: -webkit-box;
       overflow: hidden;
       -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-      margin: 0 0 9px;
-      color: var(--secundario);
-      font-size: .85rem;
-    }
-
-    .medidas {
+      -webkit-line-clamp: 3;
       margin: 0 0 12px;
       color: var(--secundario);
-      font-size: .77rem;
+      font-size: .81rem;
     }
 
     .precio-estado {
@@ -358,20 +317,20 @@
 
     .precio {
       color: var(--verde);
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       font-weight: 850;
-      letter-spacing: -.04em;
+      letter-spacing: -.03em;
     }
 
     .estado {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 5px 9px;
+      gap: 5px;
+      padding: 4px 8px;
       border-radius: 20px;
-      background: var(--verde-suave);
-      color: #285539;
-      font-size: .72rem;
+      background: #edf4ed;
+      color: #30583c;
+      font-size: .68rem;
       font-weight: 750;
     }
 
@@ -384,32 +343,32 @@
     }
 
     .estado.agotado {
-      background: #f3ece9;
-      color: #7e5145;
+      background: #f3eae5;
+      color: #805044;
     }
 
-    .acciones-tarjeta { padding: 0 18px 18px; }
+    .acciones { padding: 0 15px 16px; }
 
-    .boton-whatsapp {
+    .boton-wa {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      min-height: 46px;
+      gap: 7px;
       width: 100%;
-      padding: 11px 13px;
+      min-height: 46px;
+      padding: 11px 10px;
       border: 1px solid var(--verde);
       border-radius: 10px;
       background: var(--verde);
       color: white;
-      font-size: .86rem;
-      font-weight: 700;
-      line-height: 1.3;
       text-align: center;
       text-decoration: none;
+      font-size: .81rem;
+      font-weight: 700;
+      line-height: 1.3;
     }
 
-    .boton-whatsapp:hover { background: var(--verde-hover); }
+    .boton-wa:hover { background: var(--verde-hover); }
 
     .icono-wa {
       flex-shrink: 0;
@@ -419,27 +378,31 @@
     }
 
     .sin-resultados {
-      padding: 50px 22px;
-      border: 1px dashed #bac8b6;
+      padding: 45px 20px;
+      border: 1px dashed #b9c7b4;
       border-radius: var(--radio);
       background: #ffffff80;
       text-align: center;
     }
 
-    .sin-resultados h2 { margin: 0 0 8px; font-size: 1.2rem; }
+    .sin-resultados h2 {
+      margin: 0 0 8px;
+      font-size: 1.2rem;
+    }
+
     .sin-resultados p { color: var(--secundario); }
 
-    .pie {
-      margin-top: 45px;
+    footer {
+      margin-top: 40px;
       padding-block: 25px 115px;
       border-top: 1px solid var(--borde);
       color: var(--secundario);
-      font-size: .82rem;
       text-align: center;
+      font-size: .8rem;
     }
 
-    .pie p { margin: 5px 0; }
-    .pie strong { color: var(--verde); letter-spacing: .04em; }
+    footer p { margin: 5px 0; }
+    footer strong { color: var(--verde); letter-spacing: .05em; }
 
     .flotante {
       position: fixed;
@@ -450,8 +413,8 @@
       align-items: center;
       justify-content: center;
       gap: 9px;
-      min-width: 54px;
-      min-height: 54px;
+      min-width: 55px;
+      min-height: 55px;
       padding: 13px 18px;
       border: 2px solid white;
       border-radius: 30px;
@@ -466,20 +429,18 @@
     .flotante .icono-wa { width: 25px; height: 25px; }
 
     dialog {
-      width: min(940px, calc(100% - 28px));
+      width: min(940px, calc(100% - 24px));
       max-height: 90dvh;
       padding: 0;
       overflow: auto;
       border: 1px solid var(--borde);
-      border-radius: 22px;
+      border-radius: 20px;
       background: white;
       color: var(--texto);
       box-shadow: 0 25px 100px #0004;
     }
 
-    dialog::backdrop {
-      background: rgba(12, 30, 23, .68);
-    }
+    dialog::backdrop { background: rgba(12,30,23,.7); }
 
     .modal-cabecera {
       position: sticky;
@@ -489,9 +450,9 @@
       align-items: center;
       justify-content: space-between;
       gap: 15px;
-      padding: 12px 18px;
-      background: white;
+      padding: 10px 16px;
       border-bottom: 1px solid var(--borde);
+      background: white;
     }
 
     .modal-cabecera span {
@@ -505,6 +466,7 @@
       place-items: center;
       width: 44px;
       height: 44px;
+      padding: 0;
       border: 1px solid var(--borde);
       border-radius: 50%;
       background: var(--fondo);
@@ -517,20 +479,19 @@
       grid-template-columns: 1.1fr 1fr;
     }
 
-    .galeria { min-width: 0; padding: 20px; }
+    .galeria { min-width: 0; padding: 18px; }
 
-    .imagen-ampliada {
-      aspect-ratio: 1 / 1;
+    .foto-ampliada {
       border: 1px solid var(--borde);
-      border-radius: 14px;
+      border-radius: 13px;
     }
 
-    .navegacion-fotos {
+    .navegacion {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      margin-top: 12px;
+      margin-top: 10px;
     }
 
     .flecha {
@@ -539,7 +500,7 @@
       border: 1px solid var(--borde);
       border-radius: 10px;
       background: var(--fondo);
-      font-size: 1.25rem;
+      font-size: 1.2rem;
     }
 
     .flecha:disabled { opacity: .4; cursor: default; }
@@ -550,15 +511,15 @@
       display: flex;
       gap: 8px;
       overflow-x: auto;
-      padding: 12px 2px 5px;
+      padding-block: 12px 4px;
     }
 
     .miniatura {
       flex: 0 0 60px;
       width: 60px;
       height: 60px;
-      padding: 3px;
       overflow: hidden;
+      padding: 3px;
       border: 2px solid transparent;
       border-radius: 9px;
       background: var(--fondo);
@@ -572,15 +533,15 @@
       object-fit: contain;
     }
 
-    .miniatura .reemplazo { gap: 0; padding: 4px; }
-    .miniatura .reemplazo svg { width: 25px; height: 25px; }
+    .miniatura .reemplazo { padding: 3px; }
+    .miniatura .reemplazo svg { width: 24px; height: 24px; }
     .miniatura .reemplazo span { display: none; }
 
     .detalle {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      padding: 26px 24px 28px;
+      padding: 25px 23px;
     }
 
     .detalle h2 {
@@ -592,7 +553,7 @@
     }
 
     .detalle-descripcion {
-      margin: 15px 0;
+      margin: 17px 0;
       color: var(--secundario);
       white-space: pre-line;
       overflow-wrap: anywhere;
@@ -600,75 +561,70 @@
 
     .detalle-medidas {
       width: 100%;
-      margin: 0 0 20px;
-      padding: 13px;
+      margin: 0 0 18px;
+      padding: 12px;
       border-radius: 10px;
       background: var(--fondo);
       font-size: .85rem;
       white-space: pre-line;
     }
 
-    .detalle .precio { margin-bottom: 17px; font-size: 2rem; }
+    .detalle .precio {
+      margin-bottom: 18px;
+      font-size: 1.8rem;
+    }
 
-    .nota-whatsapp {
+    .detalle .boton-wa { font-size: .9rem; }
+
+    .nota {
       margin: 12px 0 0;
       color: var(--secundario);
-      font-size: .77rem;
+      font-size: .76rem;
     }
 
-    @media (min-width: 1150px) {
-      .catalogo { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    @media (max-width: 1050px) {
+      .catalogo { grid-template-columns: repeat(3, minmax(0,1fr)); }
     }
 
-    @media (max-width: 800px) {
-      .filtros { grid-template-columns: 1fr 1fr; }
-      .campo-buscador { grid-column: 1 / -1; }
-      .solo-disponibles { align-self: end; justify-content: flex-end; }
-      .catalogo { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; }
+    @media (max-width: 760px) {
+      .catalogo { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; }
+      .filtros { grid-template-columns: 1fr 210px; }
       .modal-contenido { grid-template-columns: 1fr; }
-      .galeria { padding-bottom: 5px; }
-      .imagen-ampliada { max-height: 45dvh; aspect-ratio: auto; height: 360px; }
-      .detalle { padding-top: 18px; }
+      .foto-ampliada { aspect-ratio: auto; height: min(400px, 45dvh); }
+      .detalle { padding-top: 12px; }
     }
 
     @media (max-width: 520px) {
       .contenedor { width: calc(100% - 24px); }
-      .cabecera-interior { padding-block: 20px; }
-      .cabecera-contacto { display: none; }
-      .presentacion { max-width: 330px; font-size: .85rem; }
+      .cabecera { padding-block: 20px; }
+      .contacto-cabecera { display: none; }
+      .presentacion { font-size: .83rem; }
       .intro { padding-top: 22px; }
-      .intro p { font-size: .9rem; }
-      .filtros { padding: 14px; gap: 12px; }
-      .solo-disponibles { font-size: .79rem; gap: 6px; }
-      .catalogo { gap: 12px; }
+      .filtros { grid-template-columns: 1fr; gap: 12px; padding: 14px; }
+      .catalogo { gap: 11px; }
       .tarjeta { border-radius: 13px; }
-      .informacion { padding: 12px 11px 10px; }
-      .nombre-producto { font-size: .94rem; }
-      .descripcion { font-size: .78rem; }
-      .medidas { font-size: .72rem; }
-      .precio { font-size: 1.3rem; }
-      .estado { padding: 4px 7px; font-size: .67rem; }
-      .acciones-tarjeta { padding: 0 10px 12px; }
-      .boton-whatsapp { font-size: .76rem; padding: 10px 7px; gap: 5px; }
-      .boton-whatsapp .icono-wa { width: 17px; height: 17px; }
+      .informacion { padding: 12px 10px 10px; }
+      .categoria-producto { font-size: .62rem; }
+      .nombre-producto { font-size: .91rem; }
+      .descripcion { font-size: .76rem; }
+      .precio { font-size: 1.12rem; }
+      .estado { font-size: .63rem; padding: 4px 6px; }
+      .acciones { padding: 0 9px 12px; }
+      .boton-wa { padding: 10px 6px; font-size: .73rem; gap: 5px; }
+      .boton-wa .icono-wa { width: 17px; height: 17px; }
       .flotante { padding: 13px; }
       .flotante span { display: none; }
-      .detalle .boton-whatsapp { font-size: .9rem; }
     }
 
     @media (max-width: 359px) {
       .catalogo { grid-template-columns: 1fr; }
-      .filtros { grid-template-columns: 1fr; }
-      .solo-disponibles { justify-content: flex-start; }
       .nombre-producto { font-size: 1.05rem; }
-      .boton-whatsapp { font-size: .88rem; }
+      .descripcion { font-size: .85rem; }
+      .boton-wa { font-size: .85rem; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        scroll-behavior: auto !important;
-        transition: none !important;
-      }
+      *, *::before, *::after { transition: none !important; }
     }
   </style>
 </head>
@@ -676,7 +632,6 @@
 <body>
   <a href="#contenido" class="saltar">Saltar al catálogo</a>
 
-  <!-- Ícono reutilizable, incluido en el archivo: no requiere librerías. -->
   <svg xmlns="http://www.w3.org/2000/svg"
        width="0" height="0"
        aria-hidden="true"
@@ -686,13 +641,13 @@
     </symbol>
   </svg>
 
-  <header class="cabecera">
-    <div class="contenedor cabecera-interior">
+  <header>
+    <div class="contenedor cabecera">
       <div>
         <p class="marca" data-negocio>VALE LA PENA</p>
         <p class="presentacion">Pequeñas soluciones que hacen más fácil tu día.</p>
       </div>
-      <a class="cabecera-contacto consulta-general"
+      <a class="contacto-cabecera consulta-general"
          target="_blank" rel="noopener noreferrer">
         Hablemos por WhatsApp ↗
       </a>
@@ -700,25 +655,17 @@
   </header>
 
   <main id="contenido" class="contenedor">
-    <section class="intro" aria-labelledby="titulo-catalogo">
-      <span class="etiqueta">Práctico · Simple · A tu alcance</span>
-      <h1 id="titulo-catalogo">Encontrá eso que te sirve.</h1>
-      <p>Explorá nuestros productos y consultanos directamente por WhatsApp.</p>
-
-      <!-- BORRAR este aviso cuando reemplaces los seis ejemplos. -->
-      <div class="aviso-ejemplos">
-        <strong>Catálogo de demostración:</strong>
-        los seis productos, características y precios son ficticios.
-        Reemplazalos por tu información real antes de publicar.
-      </div>
+    <section class="intro" aria-labelledby="titulo">
+      <span class="etiqueta">Hogar · Accesorios · Ideas prácticas</span>
+      <h1 id="titulo">Encontrá eso que te sirve.</h1>
+      <p>Descubrí nuestros productos y consultá precios por WhatsApp.</p>
     </section>
 
     <section class="filtros" aria-label="Buscar y filtrar productos">
-      <div class="campo campo-buscador">
+      <div class="campo">
         <label for="busqueda">¿Qué estás buscando?</label>
-        <input id="busqueda"
-               type="search"
-               placeholder="Buscar producto o característica…"
+        <input id="busqueda" type="search"
+               placeholder="Buscar por nombre o descripción…"
                autocomplete="off">
       </div>
 
@@ -728,89 +675,67 @@
           <option value="">Todas las categorías</option>
         </select>
       </div>
-
-      <label class="solo-disponibles" for="solo-disponibles">
-        <input id="solo-disponibles" type="checkbox" checked>
-        Solo disponibles
-      </label>
     </section>
 
-    <div class="barra-resultados">
+    <div class="resultados">
       <p id="resultados" role="status" aria-live="polite" aria-atomic="true"></p>
-      <button id="limpiar-filtros" class="limpiar" type="button">
-        Restablecer filtros
-      </button>
+      <button id="limpiar" class="limpiar" type="button">Quitar filtros</button>
     </div>
 
-    <section id="catalogo" class="catalogo" aria-label="Productos"></section>
+    <section id="catalogo" class="catalogo" aria-label="Catálogo de productos"></section>
 
     <section id="sin-resultados" class="sin-resultados" hidden>
-      <h2>No encontramos productos con esos filtros</h2>
-      <p>Probá con otra palabra, cambiá la categoría o desactivá “Solo disponibles”.</p>
-      <button id="restablecer-vacio" class="limpiar" type="button">
-        Volver al catálogo
-      </button>
+      <h2>No encontramos coincidencias</h2>
+      <p>Probá con otra palabra o elegí una categoría diferente.</p>
+      <button id="volver" class="limpiar" type="button">Ver todos los productos</button>
     </section>
 
     <noscript>
-      <p>Activá JavaScript para ver el catálogo y sus filtros.</p>
-      <p>
-        También podés
-        <a href="https://wa.me/59899934473" target="_blank" rel="noopener noreferrer">
-          consultarnos por WhatsApp
-        </a>.
-      </p>
+      <p>Activá JavaScript para ver el catálogo.</p>
+      <a href="https://wa.me/59899934473"
+         target="_blank" rel="noopener noreferrer">Consultar por WhatsApp</a>
     </noscript>
   </main>
 
-  <footer class="pie">
+  <footer>
     <div class="contenedor">
       <p><strong data-negocio>VALE LA PENA</strong></p>
-      <p>Precios expresados en pesos uruguayos ($ UYU).</p>
+      <p>Precios en pesos uruguayos ($ UYU), cuando se indiquen.</p>
       <p>Consultá disponibilidad y coordiná tu compra por WhatsApp.</p>
       <p>© <span id="anio"></span></p>
     </div>
   </footer>
 
   <a class="flotante consulta-general"
+     target="_blank" rel="noopener noreferrer"
      aria-label="Hacer una consulta general por WhatsApp"
-     title="Consultanos por WhatsApp"
-     target="_blank"
-     rel="noopener noreferrer">
-    <svg class="icono-wa" aria-hidden="true"><use href="#icono-whatsapp"></use></svg>
+     title="Consultanos por WhatsApp">
+    <svg class="icono-wa" aria-hidden="true">
+      <use href="#icono-whatsapp"></use>
+    </svg>
     <span>¿Te ayudamos?</span>
   </a>
 
-  <!-- El diálogo nativo contiene el foco y permite cerrar con Escape. -->
-  <dialog id="modal-producto" aria-labelledby="modal-titulo">
+  <dialog id="modal" aria-labelledby="modal-titulo">
     <div class="modal-cabecera">
       <span>Conocé el producto</span>
-      <button id="cerrar-modal"
-              class="cerrar"
-              type="button"
-              aria-label="Cerrar detalle del producto"
-              autofocus>×</button>
+      <button id="cerrar" class="cerrar" type="button"
+              aria-label="Cerrar detalle" autofocus>×</button>
     </div>
 
     <div class="modal-contenido">
       <section class="galeria" aria-label="Fotos del producto">
-        <div id="foto-principal" class="imagen-producto imagen-ampliada"></div>
+        <div id="foto-principal" class="foto foto-ampliada"></div>
 
-        <div class="navegacion-fotos">
-          <button id="foto-anterior"
-                  class="flecha"
-                  type="button"
-                  aria-label="Ver foto anterior">←</button>
-          <span id="contador-fotos"
-                class="contador-fotos"
-                aria-live="polite"></span>
-          <button id="foto-siguiente"
-                  class="flecha"
-                  type="button"
-                  aria-label="Ver foto siguiente">→</button>
+        <div class="navegacion">
+          <button id="anterior" class="flecha" type="button"
+                  aria-label="Foto anterior">←</button>
+          <span id="contador-fotos" class="contador-fotos" aria-live="polite"></span>
+          <button id="siguiente" class="flecha" type="button"
+                  aria-label="Foto siguiente">→</button>
         </div>
 
-        <div id="miniaturas" class="miniaturas" aria-label="Elegir una foto"></div>
+        <div id="miniaturas" class="miniaturas" aria-label="Elegir foto"></div>
       </section>
 
       <section class="detalle" aria-label="Información del producto">
@@ -821,15 +746,15 @@
         <p id="modal-medidas" class="detalle-medidas"></p>
         <div id="modal-precio" class="precio"></div>
 
-        <a id="modal-whatsapp"
-           class="boton-whatsapp"
-           target="_blank"
-           rel="noopener noreferrer">
-          <svg class="icono-wa" aria-hidden="true"><use href="#icono-whatsapp"></use></svg>
+        <a id="modal-wa" class="boton-wa"
+           target="_blank" rel="noopener noreferrer">
+          <svg class="icono-wa" aria-hidden="true">
+            <use href="#icono-whatsapp"></use>
+          </svg>
           Consultar por WhatsApp
         </a>
 
-        <p class="nota-whatsapp">
+        <p class="nota">
           Se abrirá WhatsApp con el mensaje preparado.
           Podrás revisarlo antes de enviarlo.
         </p>
@@ -842,121 +767,206 @@
 
     /*
       ============================================================
-      PRODUCTOS: EDITÁ TU CATÁLOGO EN ESTA ÚNICA LISTA
+      EDITAR PRODUCTOS
       ============================================================
-      Los seis productos siguientes son EJEMPLOS FICTICIOS.
+      Todos los productos se administran en esta lista.
 
-      id: identificador único, sin repetir.
-      nombre: nombre visible del producto.
-      categoria: se agrega automáticamente al filtro.
-      precio: número sin símbolo $, puntos de miles ni comillas.
-              Para decimales usá punto: 350.50
-      descripcion: descripción completa; la tarjeta muestra un resumen.
-      medidas: medidas, material u otras características.
-      disponible: true = Disponible / false = Agotado.
-      fotos: lista de rutas relativas o enlaces https completos.
+      precio: null muestra "Consultar".
+      Para colocar un precio usá un número:
+        precio: 350
+        precio: 350.50
 
-      Una foto:  fotos: ["img/producto.jpg"]
-      Más fotos: fotos: ["img/frente.jpg", "img/dorso.jpg"]
+      disponible: true muestra "Disponible".
+      disponible: false muestra "Agotado".
+      No existe filtro de disponibilidad: se muestran todos.
 
-      Subí las fotos a la carpeta "img" del repositorio.
-      Las mayúsculas, espacios y extensiones deben coincidir.
-      Podés usar, por ejemplo: "img/lampazo escurridor.png".
+      medidas: podés agregar medidas, material o características.
+      Si queda vacío, no se muestra ese apartado.
 
-      Para agregar un producto copiá un objeto completo.
-      Separá los objetos con comas y conservá los corchetes.
+      fotos: rutas de imágenes dentro de la carpeta img.
+      También admite enlaces completos https://...
+
+      Las rutas actuales coinciden con los nombres adjuntos,
+      incluido "(1)". Si renombrás una imagen, cambiá la ruta.
+
+      Podés agregar varias fotos:
+        fotos: ["img/frente.png", "img/dorso.png"]
+
+      Cada id debe ser único.
     */
 
     const PRODUCTOS = [
       {
-        id: "ejemplo-01",
-        nombre: "Lampazo con escurridor · Ejemplo",
-        categoria: "Hogar",
-        precio: 590,
-        descripcion: "EJEMPLO FICTICIO. Lampazo práctico para la limpieza diaria del hogar. Su sistema de escurrido facilita el uso y ayuda a mantener las manos alejadas del agua. Reemplazá esta descripción por las características reales.",
-        medidas: "Ejemplo: mango de 120 cm · Plástico y metal.",
-        disponible: true,
-        fotos: [
-          "img/lampazo escurridor.png",
-          "img/lampazo-detalle.jpg"
-        ]
-      },
-      {
-        id: "ejemplo-02",
-        nombre: "Almohada de viaje · Ejemplo",
+        id: "almohada-viaje",
+        nombre: "Almohada para viajes",
         categoria: "Viaje y descanso",
-        precio: 390,
-        descripcion: "EJEMPLO FICTICIO. Almohada para acompañarte en viajes y momentos de descanso. Diseño compacto y fácil de transportar. Confirmá material, medidas y colores antes de publicar.",
-        medidas: "Ejemplo: 28 × 28 cm · Tela suave.",
+        precio: null,
+        descripcion: "Un complemento para acompañar tus momentos de descanso y tus viajes. Consultanos por sus características y opciones disponibles.",
+        medidas: "",
         disponible: true,
-        fotos: ["img/almoahada para viajes.png"]
+        fotos: ["img/almoahada para viajes(1).png"]
       },
       {
-        id: "ejemplo-03",
-        nombre: "Pico giratorio para canilla · Ejemplo",
-        categoria: "Cocina",
-        precio: 290,
-        descripcion: "EJEMPLO FICTICIO. Accesorio orientable para dirigir el agua de la canilla y facilitar tareas cotidianas. Consultar compatibilidad de rosca y adaptadores con el modelo real.",
-        medidas: "Ejemplo: acabado metálico · Cabezal orientable.",
+        id: "anti-enredos",
+        nombre: "Accesorio antienredos",
+        categoria: "Lavado y limpieza",
+        precio: null,
+        descripcion: "Una opción práctica para tu rutina de lavado. Consultanos por su modo de uso y presentación.",
+        medidas: "",
         disponible: true,
-        fotos: ["img/pico giratorio.png"]
+        fotos: ["img/anti enredos(1).png"]
       },
       {
-        id: "ejemplo-04",
-        nombre: "Organizador de zapatos · Ejemplo",
+        id: "antifaz",
+        nombre: "Antifaz de descanso",
+        categoria: "Viaje y descanso",
+        precio: null,
+        descripcion: "Para acompañar tus momentos de descanso en casa o de viaje. Consultá colores y características disponibles.",
+        medidas: "",
+        disponible: true,
+        fotos: ["img/antifaz(1).png"]
+      },
+      {
+        id: "bolas-lavado",
+        nombre: "Bolas para lavado",
+        categoria: "Lavado y limpieza",
+        precio: null,
+        descripcion: "Accesorios para sumar a tu rutina de lavado. Consultanos por la cantidad incluida y las indicaciones de uso.",
+        medidas: "",
+        disponible: true,
+        fotos: ["img/bolas lavados(1).png"]
+      },
+      {
+        id: "accesorio-byd",
+        nombre: "Accesorio BYD",
+        categoria: "Accesorios",
+        precio: null,
+        descripcion: "Consultanos por este accesorio BYD, sus características y la compatibilidad con tu modelo.",
+        medidas: "",
+        disponible: true,
+        fotos: ["img/byd(1).png"]
+      },
+      {
+        id: "colgar-zapatos",
+        nombre: "Accesorio para colgar zapatos",
         categoria: "Organización",
-        precio: 250,
-        descripcion: "EJEMPLO FICTICIO. Organizador para aprovechar mejor el espacio y mantener el calzado ordenado. Reemplazá el texto por el tipo de instalación y la capacidad del artículo real.",
-        medidas: "Ejemplo: 25 × 12 cm · Plástico.",
+        precio: null,
+        descripcion: "Una solución para mantener el calzado ordenado y aprovechar el espacio. Consultá su capacidad y forma de colocación.",
+        medidas: "",
         disponible: true,
-        fotos: ["img/colgar zapatos.png"]
+        fotos: ["img/colgar zapatos(1).png"]
       },
       {
-        id: "ejemplo-05",
-        nombre: "Destapador de diseño · Ejemplo",
+        id: "conectores",
+        nombre: "Conectores de 2 y 3 vías",
+        categoria: "Accesorios",
+        precio: null,
+        descripcion: "Conectores en opciones de 2 y 3 vías. Consultanos por sus especificaciones y elegí la opción adecuada para tu uso.",
+        medidas: "",
+        disponible: true,
+        fotos: ["img/conectores 2 y 3(1).png"]
+      },
+      {
+        id: "set-cortinas",
+        nombre: "Set para reparar cortinas",
+        categoria: "Hogar",
+        precio: null,
+        descripcion: "Un set para realizar arreglos en cortinas. Consultanos por las piezas incluidas y su compatibilidad.",
+        medidas: "",
+        disponible: true,
+        fotos: ["img/cortina set arreglar(1).png"]
+      },
+      {
+        id: "destapador-as",
+        nombre: "Destapador As",
         categoria: "Cocina",
-        precio: 190,
-        descripcion: "EJEMPLO FICTICIO. Un accesorio para tener a mano en reuniones y comidas. Diseño compacto, práctico para guardar o regalar. Confirmá el material y las medidas reales.",
-        medidas: "Ejemplo: 9 × 5 cm · Metal.",
+        precio: null,
+        descripcion: "Un destapador con un diseño diferente para tener a mano o regalar. Consultá sus medidas y material.",
+        medidas: "",
         disponible: true,
-        fotos: ["img/destapador AS.png"]
+        fotos: ["img/destapador AS(1).png"]
       },
       {
-        id: "ejemplo-06",
-        nombre: "Antifaz de descanso · Ejemplo",
-        categoria: "Viaje y descanso",
-        precio: 220,
-        descripcion: "EJEMPLO FICTICIO. Antifaz para reducir la luz durante tus momentos de descanso. Este producto se muestra agotado para demostrar el filtro de disponibilidad.",
-        medidas: "Ejemplo: 20 × 9 cm · Tela con banda elástica.",
-        disponible: false,
-        fotos: ["img/antifaz.png"]
+        id: "fantasma",
+        nombre: "Diseño Fantasma",
+        categoria: "Novedades",
+        precio: null,
+        descripcion: "Un diseño con temática de fantasma para quienes buscan algo diferente. Consultanos por sus detalles y presentación.",
+        medidas: "",
+        disponible: true,
+        fotos: ["img/fantasma(1).png"]
+      },
+      {
+        id: "huevo",
+        nombre: "Diseño Huevo",
+        categoria: "Novedades",
+        precio: null,
+        descripcion: "Conocé este producto con diseño de huevo. Escribinos para consultar su uso, características y presentación.",
+        medidas: "",
+        disponible: true,
+        fotos: ["img/huevo(1).png"]
+      },
+      {
+        id: "iphone-16-pro",
+        nombre: "Accesorio para iPhone 16 Pro",
+        categoria: "Accesorios",
+        precio: null,
+        descripcion: "Consultanos por este accesorio para iPhone 16 Pro. Confirmá las características y la compatibilidad antes de comprar.",
+        medidas: "",
+        disponible: true,
+        fotos: ["img/iphone 16 pro(1).png"]
+      },
+      {
+        id: "lampazo",
+        nombre: "Lampazo con escurridor",
+        categoria: "Lavado y limpieza",
+        precio: null,
+        descripcion: "Una opción práctica para la limpieza diaria del hogar, con sistema de escurrido. Consultá medidas y características.",
+        medidas: "",
+        disponible: true,
+        fotos: ["img/lampazo escurridor(1).png"]
+      },
+      {
+        id: "martillo-thor",
+        nombre: "Diseño Martillo Thor",
+        categoria: "Novedades",
+        precio: null,
+        descripcion: "Un diseño inspirado en el martillo de Thor para quienes disfrutan los accesorios temáticos. Consultanos por su uso y presentación.",
+        medidas: "",
+        disponible: true,
+        fotos: ["img/Martillo Thor(1).png"]
+      },
+      {
+        id: "pico-giratorio",
+        nombre: "Pico giratorio para canilla",
+        categoria: "Cocina",
+        precio: null,
+        descripcion: "Un accesorio orientable para dirigir el agua de la canilla. Consultá la compatibilidad con tu instalación.",
+        medidas: "",
+        disponible: true,
+        fotos: ["img/pico giratorio(1).png"]
       }
     ];
 
     /*
-      ============================================================
       DATOS DEL NEGOCIO
-      Cambiá el nombre y el número de WhatsApp solamente aquí.
-      WhatsApp: código de país + número, sin +, espacios ni corchetes.
-      ============================================================
+      WhatsApp: código de país y número, sin signos ni espacios.
     */
-
     const NEGOCIO = {
       nombre: "VALE LA PENA",
       whatsapp: "59899934473",
       mensajeGeneral: "Hola, quisiera consultar sobre los productos de VALE LA PENA."
     };
 
-    // A partir de aquí no necesitás modificar nada para editar productos.
+    // No necesitás editar el resto para actualizar el catálogo.
 
-    const $ = (selector) => document.querySelector(selector);
+    const $ = selector => document.querySelector(selector);
     const catalogo = $("#catalogo");
     const busqueda = $("#busqueda");
     const categoria = $("#categoria");
-    const soloDisponibles = $("#solo-disponibles");
-    const modal = $("#modal-producto");
+    const modal = $("#modal");
 
-    const formatoNumero = new Intl.NumberFormat("es-UY", {
+    const formato = new Intl.NumberFormat("es-UY", {
       minimumFractionDigits: 0,
       maximumFractionDigits: 2
     });
@@ -964,10 +974,18 @@
     let productoActual = null;
     let fotoActual = 0;
     let focoAnterior = null;
-    let inicioFueraDelModal = false;
+    let clicExterior = false;
 
-    function precioTexto(precio) {
-      return "$ " + formatoNumero.format(precio);
+    function tienePrecio(producto) {
+      return typeof producto.precio === "number" &&
+        Number.isFinite(producto.precio) &&
+        producto.precio >= 0;
+    }
+
+    function precioTexto(producto) {
+      return tienePrecio(producto)
+        ? "$ " + formato.format(producto.precio)
+        : "Consultar";
     }
 
     function normalizar(texto) {
@@ -978,20 +996,23 @@
         .trim();
     }
 
-    function enlaceWhatsapp(mensaje) {
+    function whatsapp(mensaje) {
       return "https://wa.me/" + NEGOCIO.whatsapp +
         "?text=" + encodeURIComponent(mensaje);
     }
 
-    function enlaceProducto(producto) {
-      return enlaceWhatsapp(
-        "Hola, me interesa el producto " + producto.nombre +
-        ", publicado a " + precioTexto(producto.precio) +
-        ". ¿Está disponible?"
-      );
+    function whatsappProducto(producto) {
+      const mensaje = tienePrecio(producto)
+        ? "Hola, me interesa el producto " + producto.nombre +
+          ", publicado a " + precioTexto(producto) +
+          ". ¿Está disponible?"
+        : "Hola, me interesa el producto " + producto.nombre +
+          ". ¿Qué precio tiene y está disponible?";
+
+      return whatsapp(mensaje);
     }
 
-    function crearIconoWhatsapp() {
+    function iconoWhatsapp() {
       const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
       svg.setAttribute("class", "icono-wa");
       svg.setAttribute("aria-hidden", "true");
@@ -999,17 +1020,15 @@
       const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
       use.setAttribute("href", "#icono-whatsapp");
       svg.append(use);
-
       return svg;
     }
 
-    function crearReemplazo() {
+    function reemplazo() {
       const elemento = document.createElement("div");
       elemento.className = "reemplazo";
       elemento.setAttribute("role", "img");
       elemento.setAttribute("aria-label", "Foto no disponible");
 
-      // SVG fijo: nunca se inserta contenido del catálogo como HTML.
       elemento.innerHTML = `
         <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
           <rect x="6" y="8" width="36" height="32" rx="6"
@@ -1026,28 +1045,27 @@
       return elemento;
     }
 
-    function crearImagen(ruta, textoAlternativo, diferida = true) {
+    function crearImagen(ruta, alt, diferida = true) {
       if (typeof ruta !== "string" || !ruta.trim()) {
-        return crearReemplazo();
+        return reemplazo();
       }
 
-      // Se admiten archivos relativos y enlaces HTTP/HTTPS.
       try {
         const url = new URL(ruta, document.baseURI);
-        if (!["http:", "https:", "file:"].includes(url.protocol)) {
-          return crearReemplazo();
+        if (!["https:", "http:", "file:"].includes(url.protocol)) {
+          return reemplazo();
         }
       } catch {
-        return crearReemplazo();
+        return reemplazo();
       }
 
       const imagen = document.createElement("img");
-      imagen.alt = textoAlternativo;
+      imagen.alt = alt;
       imagen.loading = diferida ? "lazy" : "eager";
       imagen.decoding = "async";
 
       imagen.addEventListener("error", () => {
-        imagen.replaceWith(crearReemplazo());
+        imagen.replaceWith(reemplazo());
       }, { once: true });
 
       imagen.src = ruta;
@@ -1073,30 +1091,29 @@
 
       const abrir = document.createElement("button");
       abrir.type = "button";
-      abrir.className = "tarjeta-detalle";
+      abrir.className = "abrir-producto";
       abrir.setAttribute("aria-haspopup", "dialog");
       abrir.setAttribute("aria-label", "Ver fotos y detalles de " + producto.nombre);
       abrir.addEventListener("click", () => abrirProducto(producto));
 
-      const zonaFoto = document.createElement("div");
-      zonaFoto.className = "imagen-producto";
-
+      const foto = document.createElement("div");
+      foto.className = "foto";
       const fotos = fotosDe(producto);
-      zonaFoto.append(crearImagen(fotos[0], producto.nombre));
+      foto.append(crearImagen(fotos[0], producto.nombre));
 
       if (fotos.length > 1) {
         const cantidad = document.createElement("span");
         cantidad.className = "cantidad-fotos";
         cantidad.textContent = fotos.length + " fotos";
-        zonaFoto.append(cantidad);
+        foto.append(cantidad);
       }
 
       const informacion = document.createElement("div");
       informacion.className = "informacion";
 
-      const etiquetaCategoria = document.createElement("span");
-      etiquetaCategoria.className = "categoria-producto";
-      etiquetaCategoria.textContent = producto.categoria;
+      const etiqueta = document.createElement("span");
+      etiqueta.className = "categoria-producto";
+      etiqueta.textContent = producto.categoria;
 
       const nombre = document.createElement("h2");
       nombre.className = "nombre-producto";
@@ -1106,41 +1123,33 @@
       descripcion.className = "descripcion";
       descripcion.textContent = producto.descripcion;
 
-      const medidas = document.createElement("p");
-      medidas.className = "medidas";
-      medidas.textContent = producto.medidas || "";
-      medidas.hidden = !producto.medidas;
-
       const precioEstado = document.createElement("div");
       precioEstado.className = "precio-estado";
 
       const precio = document.createElement("span");
       precio.className = "precio";
-      precio.textContent = precioTexto(producto.precio);
+      precio.textContent = precioTexto(producto);
 
       precioEstado.append(precio, crearEstado(producto.disponible));
-      informacion.append(etiquetaCategoria, nombre, descripcion, medidas, precioEstado);
-      abrir.append(zonaFoto, informacion);
+      informacion.append(etiqueta, nombre, descripcion, precioEstado);
+      abrir.append(foto, informacion);
 
       const acciones = document.createElement("div");
-      acciones.className = "acciones-tarjeta";
+      acciones.className = "acciones";
 
-      const whatsapp = document.createElement("a");
-      whatsapp.className = "boton-whatsapp";
-      whatsapp.href = enlaceProducto(producto);
-      whatsapp.target = "_blank";
-      whatsapp.rel = "noopener noreferrer";
-      whatsapp.setAttribute("aria-label", "Consultar por WhatsApp: " + producto.nombre);
-      whatsapp.append(crearIconoWhatsapp(), document.createTextNode("Consultar por WhatsApp"));
+      const enlace = document.createElement("a");
+      enlace.className = "boton-wa";
+      enlace.href = whatsappProducto(producto);
+      enlace.target = "_blank";
+      enlace.rel = "noopener noreferrer";
+      enlace.setAttribute("aria-label", "Consultar por WhatsApp: " + producto.nombre);
+      enlace.append(iconoWhatsapp(), document.createTextNode("Consultar por WhatsApp"));
 
-      acciones.append(whatsapp);
+      acciones.append(enlace);
       articulo.append(abrir, acciones);
 
-      // El espacio exterior del artículo también abre el detalle.
-      articulo.addEventListener("click", (evento) => {
-        if (!evento.target.closest("a, button")) {
-          abrirProducto(producto);
-        }
+      articulo.addEventListener("click", evento => {
+        if (!evento.target.closest("a, button")) abrirProducto(producto);
       });
 
       return articulo;
@@ -1158,41 +1167,33 @@
       });
     }
 
-    function renderizarCatalogo() {
+    function renderizar() {
       const palabras = normalizar(busqueda.value).split(/\s+/).filter(Boolean);
 
-      const productosFiltrados = PRODUCTOS
+      const encontrados = PRODUCTOS
         .filter(producto => {
-          const texto = normalizar(
-            producto.nombre + " " + producto.descripcion
-          );
-
+          const texto = normalizar(producto.nombre + " " + producto.descripcion);
           return palabras.every(palabra => texto.includes(palabra)) &&
-            (!categoria.value || producto.categoria === categoria.value) &&
-            (!soloDisponibles.checked || producto.disponible);
+            (!categoria.value || producto.categoria === categoria.value);
         })
         .sort((a, b) => Number(b.disponible) - Number(a.disponible));
 
       const fragmento = document.createDocumentFragment();
-      productosFiltrados.forEach(producto => {
-        fragmento.append(crearTarjeta(producto));
-      });
-
+      encontrados.forEach(producto => fragmento.append(crearTarjeta(producto)));
       catalogo.replaceChildren(fragmento);
 
-      const cantidad = productosFiltrados.length;
-      $("#resultados").textContent =
-        cantidad + (cantidad === 1 ? " producto encontrado" : " productos encontrados");
+      const cantidad = encontrados.length;
+      $("#resultados").textContent = cantidad +
+        (cantidad === 1 ? " producto encontrado" : " productos encontrados");
 
-      $("#sin-resultados").hidden = cantidad !== 0;
       catalogo.hidden = cantidad === 0;
+      $("#sin-resultados").hidden = cantidad !== 0;
     }
 
-    function restablecerFiltros() {
+    function quitarFiltros() {
       busqueda.value = "";
       categoria.value = "";
-      soloDisponibles.checked = true;
-      renderizarCatalogo();
+      renderizar();
     }
 
     function abrirProducto(producto) {
@@ -1203,13 +1204,14 @@
       $("#modal-titulo").textContent = producto.nombre;
       $("#modal-categoria").textContent = producto.categoria;
       $("#modal-descripcion").textContent = producto.descripcion;
+      $("#modal-precio").textContent = precioTexto(producto);
+      $("#modal-wa").href = whatsappProducto(producto);
 
       const medidas = $("#modal-medidas");
-      medidas.textContent = producto.medidas ? "Características: " + producto.medidas : "";
+      medidas.textContent = producto.medidas
+        ? "Características: " + producto.medidas
+        : "";
       medidas.hidden = !producto.medidas;
-
-      $("#modal-precio").textContent = precioTexto(producto.precio);
-      $("#modal-whatsapp").href = enlaceProducto(producto);
 
       const estado = $("#modal-estado");
       estado.textContent = producto.disponible ? "Disponible" : "Agotado";
@@ -1219,8 +1221,9 @@
       mostrarFoto(0);
 
       modal.showModal();
+      modal.scrollTop = 0;
       document.body.classList.add("modal-abierto");
-      $("#cerrar-modal").focus();
+      $("#cerrar").focus();
     }
 
     function crearMiniaturas() {
@@ -1236,10 +1239,9 @@
         boton.className = "miniatura";
         boton.setAttribute("aria-label", "Ver foto " + (indice + 1));
         boton.setAttribute("aria-pressed", "false");
-
         boton.append(crearImagen(
           ruta,
-          "Foto " + (indice + 1) + " de " + productoActual.nombre
+          productoActual.nombre + ", foto " + (indice + 1)
         ));
 
         boton.addEventListener("click", () => mostrarFoto(indice));
@@ -1256,7 +1258,7 @@
       $("#foto-principal").replaceChildren(
         crearImagen(
           fotos[fotoActual],
-          productoActual.nombre + " — foto " + (fotoActual + 1),
+          productoActual.nombre + ", foto " + (fotoActual + 1),
           false
         )
       );
@@ -1264,8 +1266,8 @@
       $("#contador-fotos").textContent =
         "Foto " + (fotoActual + 1) + " de " + fotos.length;
 
-      $("#foto-anterior").disabled = fotos.length < 2;
-      $("#foto-siguiente").disabled = fotos.length < 2;
+      $("#anterior").disabled = fotos.length < 2;
+      $("#siguiente").disabled = fotos.length < 2;
 
       $("#miniaturas").querySelectorAll("button").forEach((boton, i) => {
         boton.setAttribute("aria-pressed", String(i === fotoActual));
@@ -1276,26 +1278,23 @@
       if (modal.open) modal.close();
     }
 
-    $("#cerrar-modal").addEventListener("click", cerrarModal);
-
-    // Cierra solo si tanto el inicio como el final del clic son exteriores.
-    function estaFuera(evento) {
-      const limites = modal.getBoundingClientRect();
-      return evento.clientX < limites.left ||
-        evento.clientX > limites.right ||
-        evento.clientY < limites.top ||
-        evento.clientY > limites.bottom;
+    function fueraDelModal(evento) {
+      const rect = modal.getBoundingClientRect();
+      return evento.clientX < rect.left ||
+        evento.clientX > rect.right ||
+        evento.clientY < rect.top ||
+        evento.clientY > rect.bottom;
     }
 
     modal.addEventListener("pointerdown", evento => {
-      inicioFueraDelModal = evento.target === modal && estaFuera(evento);
+      clicExterior = evento.target === modal && fueraDelModal(evento);
     });
 
     modal.addEventListener("click", evento => {
-      if (inicioFueraDelModal && evento.target === modal && estaFuera(evento)) {
+      if (clicExterior && evento.target === modal && fueraDelModal(evento)) {
         cerrarModal();
       }
-      inicioFueraDelModal = false;
+      clicExterior = false;
     });
 
     modal.addEventListener("close", () => {
@@ -1307,10 +1306,9 @@
       }
     });
 
-    // Escape lo gestiona el diálogo nativo. Las flechas cambian las fotos.
+    // Escape cierra mediante el comportamiento nativo de dialog.
     modal.addEventListener("keydown", evento => {
-      if (!productoActual) return;
-      if (evento.altKey || evento.ctrlKey || evento.metaKey) return;
+      if (!productoActual || evento.altKey || evento.ctrlKey || evento.metaKey) return;
 
       if (evento.key === "ArrowLeft") {
         evento.preventDefault();
@@ -1323,29 +1321,28 @@
       }
     });
 
-    $("#foto-anterior").addEventListener("click", () => mostrarFoto(fotoActual - 1));
-    $("#foto-siguiente").addEventListener("click", () => mostrarFoto(fotoActual + 1));
+    $("#cerrar").addEventListener("click", cerrarModal);
+    $("#anterior").addEventListener("click", () => mostrarFoto(fotoActual - 1));
+    $("#siguiente").addEventListener("click", () => mostrarFoto(fotoActual + 1));
 
-    busqueda.addEventListener("input", renderizarCatalogo);
-    categoria.addEventListener("change", renderizarCatalogo);
-    soloDisponibles.addEventListener("change", renderizarCatalogo);
-
-    $("#limpiar-filtros").addEventListener("click", restablecerFiltros);
-    $("#restablecer-vacio").addEventListener("click", restablecerFiltros);
+    busqueda.addEventListener("input", renderizar);
+    categoria.addEventListener("change", renderizar);
+    $("#limpiar").addEventListener("click", quitarFiltros);
+    $("#volver").addEventListener("click", quitarFiltros);
 
     document.querySelectorAll("[data-negocio]").forEach(elemento => {
       elemento.textContent = NEGOCIO.nombre;
     });
 
     document.querySelectorAll(".consulta-general").forEach(enlace => {
-      enlace.href = enlaceWhatsapp(NEGOCIO.mensajeGeneral);
+      enlace.href = whatsapp(NEGOCIO.mensajeGeneral);
     });
 
-    document.title = NEGOCIO.nombre + " | Catálogo";
+    document.title = NEGOCIO.nombre + " | Productos";
     $("#anio").textContent = new Date().getFullYear();
 
     cargarCategorias();
-    renderizarCatalogo();
+    renderizar();
   </script>
 </body>
 </html>
